@@ -39,9 +39,9 @@
 
 - 웹툰 CRUD -->
 
-## 시스템 구조 - <a>상세보기</a>
+## 시스템 구조 - <a href="https://user-images.githubusercontent.com/86402585/233840373-9c5df1b3-482b-42c0-ab87-ccc187da69e5.jpg">상세보기</a>
 
-## 테이블 구조 - <a>상세보기</a>
+## 테이블 구조 - <a href="https://user-images.githubusercontent.com/86402585/233840269-8d9afd1f-90a7-44fa-a5a8-1e4b814460fb.jpg">상세보기</a>
 
 ##### 개발서버 테스트 실행 방법
 
