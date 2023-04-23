@@ -1,0 +1,85 @@
+/* div{
+    background-color: aqua;
+}
+.back{
+  background-color: cadetblue;
+}
+
+.col{
+    background-color: beige;
+}
+.select{
+    background-color: brown;
+    padding :5px;
+  }
+  
+
+header{
+  background-color: tomato;
+}  */
+
+header{
+    padding: 0.3rem;
+    
+}
+
+
+
+/* 만화표기목록꾸미기 */
+.webtoon-info{
+    height: 600px;
+	width: 300px;
+}/* } 전체박스 */
+
+/* 표지 이미지 */
+.webtoon-img{
+    height: 500px;
+    width: 300px;
+}
+  /* 상표 로고 위치 조정 */
+  .image2 {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    bottom: 50px;
+    left: 250px;
+  }
+  /* 상표 로고 크기 */
+  .publishing-logo{
+    width: 35px;
+    height: 35px;
+  }
+  /* 초과된 문자열 자르기 */
+  .cut-letter {
+    text-overflow: ellipsis;
+    /* text-overflow: clip; */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 280px;
+  }
+
+.bookmark {
+  
+  }
+
+.listbookmark{
+
+  position: relative;
+  width: 70px;
+  height: 40px;
+  bottom: 40px;
+  left: 220px;
+}
+
+.max-size{
+  width: 300px;
+  height: 500px;
+  object-fit: cover;
+}
+.webtoon-s{
+  position: relative;
+  width: 300px;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+}

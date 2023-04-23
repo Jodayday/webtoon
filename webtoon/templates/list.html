@@ -1,0 +1,157 @@
+
+
+{% extends "template/base.html" %}
+{% load static %}
+
+{% block script_top %} 
+{% endblock %}
+
+{% block search %}
+<form class="offset-md-8" role="search" method="get">
+    <input name="search" 
+    type="search" 
+    class="form-control form-control-dark"
+    value="{{ search|default_if_none:'' }}"
+    placeholder="제목검색" aria-label="찾다">
+</form>
+{% endblock %}
+
+{% block nav %}
+    {% include "template/nav.html" with status=status %}
+{% endblock %}
+
+{% block day %}
+    {% include "template/day.html" with days=day_list day_select=day_select %}
+{% endblock %}
+
+
+ 
+{% block publishing %}
+<!-- {% include "template/publishing.html" with publishings=publishing_list %} -->
+{% endblock %} 
+
+
+{% block tag %}
+    {% include "template/tag.html" with tags=tag_list tag_select=tag_select %}
+{% endblock %}
+
+{% block list %}
+
+
+<div id="listshow">
+    <div class="row row-cols-4 justify-content-center">
+        {% if webtoon_list %}
+        {% for webtoon in webtoon_list %}
+        <div class="card mx-1 px-0" style="width: 18rem;">
+            <img src="{{ webtoon.webtoon_img.url }}" class="card-img-top" alt="웹툰이미지" style="min-height: 500px;">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <strong class=" mb-2 fs-5">
+                        {{ webtoon.webtoon_name }}
+                    </strong>
+                </h5>
+                
+                <div class="cut-letter pb-1 ">
+                    {% for auther in webtoon.webtoon_auther.all %}
+                    {{ auther.auther_name }}
+                    {% endfor %}
+                </div>
+
+                <div class="row row-cols-auto">
+                    {% for tag in webtoon.webtoon_tag.all|slice:":3" %}
+                        <div class="col ms-1 border border-dark-subtle rounded-pill">{{ tag.tag_name }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row px-4">
+                <a class="col btn btn-secondary btn-sm mb-2 me-2  " target="_blank" href="{{ webtoon.webtoon_link }}">보러가기</a>
+                {% if webtoon in user_info %}
+                <button type="button" value="{{webtoon.id}}" class=" col bookmark btn btn-secondary btn-sm mb-2 ">
+                    북마크
+                </button>
+                {% else %}
+                <button type="button" value="{{webtoon.id}}" class=" col bookmark bookmark-on btn btn-outline-secondary  btn-sm mb-2 ">
+                    북마크
+                </button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div>자료가 없습니다.</div>
+        
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block page  %}
+<ul class="mt-5 pagination justify-content-center">
+    <!-- 이전페이지 -->
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <button class="page-link page" type="button" value="{{ page_obj.previous_page_number }}" >이전</button>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <button class="page-link" type="button" >이전</button>
+    </li>
+    {% endif %}
+
+    <!-- 페이지리스트 -->
+    {% for page_number in page_obj.paginator.page_range %}
+    {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
+    {% if page_number == page_obj.number %}
+    <li class="page-item active" aria-current="page">
+        <button class="page-link page" type="button" value="{{ page_number }}" >{{ page_number }}</button>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <button class="page-link page" type="button" value="{{ page_number }}" >{{ page_number }}</button>
+    </li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    <!-- 다음페이지 -->
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <button class="page-link page" type="button" value="{{ page_obj.next_page_number }}" >다음</button>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <button class="page-link" type="button">다음</button>
+    </li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+{% block script_bottom %} 
+<script>
+
+$(document).ready(function() {
+  $('.bookmark').click(function() {
+    var webtoon_id = $(this).val();
+    var check = $(this).hasClass('bookmark-on');
+
+    $.ajax({
+      type: 'POST',
+      url: '{% url "webtoon:check" %}',
+      data: {
+        'bookmark': webtoon_id,
+        'check': check,
+      },
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}'
+      },
+    });
+
+    $(this).toggleClass('btn-secondary');
+    $(this).toggleClass('btn-outline-secondary');
+    $(this).toggleClass('bookmark-on');
+  });
+});
+
+    </script>
+{% endblock %}

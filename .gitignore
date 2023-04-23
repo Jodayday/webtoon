@@ -1,0 +1,7 @@
+/data
+/webtooncode
+/media/*
+/webtoon/management
+secret_key.py
+.vscode
+README copy.md

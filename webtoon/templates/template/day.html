@@ -1,0 +1,19 @@
+<div class="container text-center p-1 ">
+    <div class="row">
+        <button type="button" name="day" value="0" class="day col btn 
+        {% if day_select == '0' %}
+        btn-secondary
+        {% else %}
+        btn-outline-secondary
+        {% endif %}
+        border border-dark-subtle" >전체</button>
+        
+        {% for day in days %}
+            {% if day_select == day.day_name %}
+            <button type="button" name="day" value="{{ day.day_name }}" class="day col btn btn-secondary border border-dark-subtle" >{{ day.day_name }}</button>
+            {% else %}
+            <button type="button" name="day" value="{{ day.day_name }}" class="day col btn btn-outline-secondary border border-dark-subtle" >{{ day.day_name }}</button>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
