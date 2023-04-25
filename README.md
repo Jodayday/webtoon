@@ -2,7 +2,7 @@
 
 모든 웹툰을 체크하고 보러갈수있는 사이트
 
-- <a>linktoon</a>
+- <a href='http://linktoon.kro.kr/'>linktoon</a>
 
 ### 개발환경
 
