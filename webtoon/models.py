@@ -33,7 +33,7 @@ class AutherModel(models.Model):
         verbose_name_plural = '작가 리스트'
 
     auther_name = models.CharField(
-        max_length=20,
+        max_length=100,
         verbose_name='이름',
     )
     auther_create_time = models.DateTimeField(
