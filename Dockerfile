@@ -2,6 +2,8 @@ FROM python:3.9
 
 WORKDIR /home/
 
+ARG CACHEBUST=2
+
 RUN git clone https://github.com/Jodayday/webtoon.git
 
 WORKDIR /home/webtoon/

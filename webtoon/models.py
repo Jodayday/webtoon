@@ -122,7 +122,7 @@ class WebtoonModel(models.Model):
         unique=True,
     )
     webtoon_description = models.CharField(
-        max_length=300,
+        max_length=1000,
         verbose_name='설명',
         null=True,
         blank=True,
